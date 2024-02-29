@@ -1,0 +1,9 @@
+Plop! Here is the exercices: 
+
+From the file services.txt, sort alphabetically the following line with the following condition : 
+- do no take the line ending with -v3 
+- take only the line ending with bar 
+
+Answer using 
+- Python
+- Bash Script
