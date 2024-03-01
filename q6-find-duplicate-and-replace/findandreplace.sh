@@ -1,22 +1,24 @@
+# sorted_file=$(sort "$file_path" | uniq -d)
+# echo "$sorted_file"
+# sed -i "s/$duplicate_string/$replacement_string/g" "$file_path"
+
 #!/bin/bash
 
-# Prompt the user for the file path
+file="names.txt"
+new_file=""
 
-read -p “Enter the path to the file: “ file_path
+# Read the file line by line
+while IFS= read -r line
+do
+    # Check if the current name is already present in the file
+    count=$(grep -c -w "$line" "$file")
+    echo "$line - $count"
+    # If the count is greater than 1, it means the name is duplicated
+    if [ "$count" -gt 1 ]; then
+        # Replace all occurrences of the name with "DUPLICATED"
+        tmp=$(sed "s/$line/DUPLICATED/g" "$file")
+        new_file="$tmp"
+    fi
+done < "$file"
 
-# Prompt the user for the duplicate string to search for
-
-read -p “Enter the duplicate string to search for: “ duplicate_string
-
-# Prompt the user for the replacement string
-
-read -p “Enter the replacement string: “ replacement_string
-
-# Find all occurrences of the duplicate string in the file and replace them with the replacement string
-
-sorted_file=$(sort “$file_path” | uniq -d)
-
-sed -i “s/$duplicate_string/$replacement_string/g” “$file_path”
-
-echo “All occurrences of ‘$duplicate_string’ replaced with ‘$replacement_string’ in ‘$file_path’.”
-
+echo "$new_file" > new_luis.txt

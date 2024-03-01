@@ -14,6 +14,10 @@ read keyword
 
 # The -i option performs case-insensitive matching
 
-echo "grep -wci"
-grep -wci "$keyword" "$filepath" 
+# echo "grep -wci"
+# grep -wci "$keyword" "$filepath" 
+
+cat ./luis.txt| grep -o -i Luis | wc -l
+
+
 
