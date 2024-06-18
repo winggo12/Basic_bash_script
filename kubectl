@@ -8,3 +8,17 @@ for ns in $namespaces; do
     echo "Checking namespace: $ns"
     kubectl -n $ns get pods | grep image
 done
+
+#!/bin/bash
+
+# Get the namespace as an argument
+namespace=$1
+
+# Get the list of pod names
+pods=$(kubectl -n=$namespace get pods -o=jsonpath='{.items[*].metadata.name}')
+
+# Loop through each pod and run the kubectl command
+for pod in $pods; do
+    echo "Checking pod: $pod"
+    kubectl -n=$namespace get pod $pod -o=yaml | grep "abc"
+done
