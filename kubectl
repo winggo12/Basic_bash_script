@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Get all namespaces
+namespaces=$(kubectl get namespaces -o jsonpath='{.items[*].metadata.name}')
+
+# Loop through each namespace and run the kubectl command
+for ns in $namespaces; do
+    echo "Checking namespace: $ns"
+    kubectl -n $ns get pods | grep image
+done
