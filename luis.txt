@@ -1,17 +1,44 @@
-Certainly! Here's a fictional description of a colleague named Luis,
- who is a software engineer: Luis is an exceptional software engineer with
-  a passion for innovation and problem-solving. With a sharp mind and a keen
-   eye for detail, he consistently delivers high-quality code that exceeds
-    expectations. Luis's extensive knowledge of programming languages, frameworks,
-     and development tools makes him a versatile and valuable asset to any project
-     . His colleagues admire Luis for his strong work ethic and dedication. 
-     He possesses excellent communication skills, allowing him to effectively 
-     collaborate with cross-functional teams, understand client requirements, 
-     and translate them into elegant, efficient solutions. Luis approaches challenges
-     with a positive mindset and an unwavering commitment to finding the best 
-     possible resolution. In addition to his technical prowess, Luis is a natural
-      leader. He has a knack for inspiring and motivating his teammates,
-       fostering a collaborative and productive work environment. 
-       His ability to break down complex concepts into easily understandable 
-       terms makes him an excellent mentor for junior developers. 
-       Outside of work, Luis is an avid learner and continuously seeks opportunities to expand his knowledge and stay up-to-date with the latest industry trends. He enjoys attending conferences, participating in hackathons, and engaging in open-source projects. In summary, Luis is a highly skilled and dedicated software engineer who consistently delivers exceptional results. His technical expertise, leadership qualities, and passion for learning make him an invaluable asset to any software development team.
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:PutSecretValue",
+                "secretsmanager:CreateSecret",
+                "secretsmanager:DeleteSecret"
+            ],
+            "Resource": [
+                "arn:aws:secretsmanager:*:*:secret:*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "kms:Encrypt",
+                "kms:Decrypt",
+                "kms:DescribeKey",
+                "kms:CreateKey",
+                "kms:DeleteKey"
+            ],
+            "Resource": [
+                "arn:aws:kms:*:*:key/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "acm:ImportCertificate",
+                "acm:ExportCertificate",
+                "acm:DescribeCertificate",
+                "acm:ListTagsForCertificate",
+                "acm:AddTagsToCertificate",
+                "acm:RemoveTagsFromCertificate"
+            ],
+            "Resource": [
+                "arn:aws:acm:*:*:certificate/*"
+            ]
+        }
+    ]
+}
