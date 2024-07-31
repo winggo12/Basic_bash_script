@@ -1,3 +1,6 @@
+Certainly, you can add a condition to the policy to restrict access to secrets with a specific tag. Here's an updated version of the policy that includes a condition for the "mox.owner" tag:
+
+```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -11,7 +14,12 @@
             ],
             "Resource": [
                 "arn:aws:secretsmanager:*:*:secret:*"
-            ]
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "aws:ResourceTag/mox.owner": "application-foundation"
+                }
+            }
         },
         {
             "Effect": "Allow",
@@ -42,3 +50,8 @@
         }
     ]
 }
+```
+
+The added condition in the Secrets Manager section restricts access to only those secrets that have the "mox.owner" tag set to "application-foundation". This means that the IAM role or user with this policy will only be able to read and write secrets that have this specific tag.
+
+Remember to attach this updated policy to the relevant IAM role or user to enforce the tag-based access control.
